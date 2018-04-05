@@ -31,3 +31,9 @@ async function login(parent, args, context, info) {
 		user,
 	}
 }
+
+module.exports =  {
+	signup,
+	login,
+	post,
+}
