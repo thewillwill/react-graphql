@@ -1,4 +1,4 @@
-# The service name, this will be part of the endpoint of Prisma API
+# The service name, this will be part of the endpoint of the Prisma API
 service: hackernews-node
 
 # The deployment stage, this will also be part of the API endpoint
