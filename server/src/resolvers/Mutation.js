@@ -20,6 +20,8 @@ async function signup(parent, args, context, info) {
   }
 }
 
+//eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJjamZvZXc0Z2x5ZG5qMGE0MnFiaTl6N2xyIiwiaWF0IjoxNTIzMDQ3MDU0fQ.e0yP-DExmdiZnK32Fgq3ecT6VkIqbTx3v78DCeCdyBw
+
 async function login(parent, args, context, info) {
   // 1
   const user = await context.db.query.user({ where: { email: args.email } }, ` { id password } `)
@@ -43,13 +45,14 @@ async function login(parent, args, context, info) {
 }
 
 function post(parent, args, context, info) {
-  const userId = getUserId(context)
+  // const userId = getUserId(context)
+  // const userId = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJjamZvZXc0Z2x5ZG5qMGE0MnFiaTl6N2xyIiwiaWF0IjoxNTIzMDQ3MDU0fQ.e0yP-DExmdiZnK32Fgq3ecT6VkIqbTx3v78DCeCdyBw"
   return context.db.mutation.createLink(
     {
       data: {
         url: args.url,
         description: args.description,
-        postedBy: { connect: { id: userId } },
+        
       },
     },
     info,
