@@ -1,12 +1,14 @@
-# The service name, this will be part of the endpoint of the Prisma API
-service: hackernews-node
+# the name for the service (will be part of the service's HTTP endpoint)
+service: hackernews-graphql-js
 
-# The deployment stage, this will also be part of the API endpoint
+# the cluster and stage the service is deployed to
 stage: dev
 
-# Points to the file that holds your data model
+# to disable authentication:
+# disableAuth: true
+secret: mysecret123
+
+# the file path pointing to your data model
 datamodel: datamodel.graphql
 
-# You can only access the API when providing JWTs that are signed with this secret
-secret: mysecret123
-cluster: public-lizardchopper-663/prisma-eu1
+cluster: public-sparkshrieker-926/prisma-us1

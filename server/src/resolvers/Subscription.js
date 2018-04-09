@@ -1,30 +1,26 @@
-function newLinkSubscribe (parent, args, context, info) {
-	return context.db.subscription.link(
-		// https://github.com/graphcool/prisma/issues/1734
-    	// { where: { mutation_in: ['CREATED'] } },
-		{},
-		info,
-	)
-}
-
-function newVoteSubscribe (parents, args, context, info) {
-	return context.db.subscription.vote(
-		// https://github.com/graphcool/prisma/issues/1734
-    	// { where: { mutation_in: ['CREATED'] } },
-    	{},
-    	info,
-		)
-}
-
 const newLink = {
-	subscribe: newLinkSubscribe
+  subscribe: (parent, args, ctx, info) => {
+    return ctx.db.subscription.link(
+      // https://github.com/graphcool/prisma/issues/1734
+      // { where: { mutation_in: ['CREATED'] } },
+      { },
+      info,
+    )
+  },
 }
 
 const newVote = {
-	subscribe: newVoteSubscribe
+  subscribe: (parent, args, ctx, info) => {
+    return ctx.db.subscription.vote(
+      // https://github.com/graphcool/prisma/issues/1734
+      // { where: { mutation_in: ['CREATED'] } },
+      { },
+      info,
+    )
+  },
 }
 
 module.exports = {
-	newLink,
-	newVote,
+  newLink,
+  newVote,
 }
