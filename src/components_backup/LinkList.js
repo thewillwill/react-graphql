@@ -119,11 +119,9 @@ class LinkList extends Component {
           subscriptionData.data.newLink.node,
           ...previous.feed.links,
         ]
-        console.log("Previous:", previous)
         const result = {
           ...previous,
           feed: {
-            ...previous.feed,
             links: newAllLinks,
           },
         }

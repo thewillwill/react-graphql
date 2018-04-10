@@ -1,21 +1,19 @@
-import React from "react";
-import ReactDOM from "react-dom";
-import "./styles/index.css";
-import App from "./components/App";
-import registerServiceWorker from "./registerServiceWorker";
-import { AUTH_TOKEN } from './constants';
-import { ApolloProvider } from "react-apollo";
-import { ApolloClient } from "apollo-client";
-import { HttpLink } from "apollo-link-http";
-
-import { ApolloLink, split } from 'apollo-client-preset';
-import { WebSocketLink } from 'apollo-link-ws';
-import { getMainDefinition } from 'apollo-utilities';
-
-import { InMemoryCache } from "apollo-cache-inmemory";
+import React from 'react'
+import ReactDOM from 'react-dom'
+import './styles/index.css'
+import App from './components/App'
+import registerServiceWorker from './registerServiceWorker'
 import { BrowserRouter } from 'react-router-dom'
+import { AUTH_TOKEN } from './constants'
+import { ApolloLink, split } from 'apollo-client-preset'
+import { ApolloProvider } from 'react-apollo'
+import { ApolloClient } from 'apollo-client'
+import { HttpLink } from 'apollo-link-http'
+import { InMemoryCache } from 'apollo-cache-inmemory'
+import { WebSocketLink } from 'apollo-link-ws'
+import { getMainDefinition } from 'apollo-utilities'
 
-const httpLink = new HttpLink({ uri: "http://localhost:4000" });
+const httpLink = new HttpLink({ uri: `http://localhost:4000` })
 
 const middlewareAuthLink = new ApolloLink((operation, forward) => {
   const token = localStorage.getItem(AUTH_TOKEN)
@@ -28,7 +26,7 @@ const middlewareAuthLink = new ApolloLink((operation, forward) => {
   return forward(operation)
 })
 
-const httpLinkWithAuthToken = middlewareAuthLink.concat(httpLink);
+const httpLinkWithAuthToken = middlewareAuthLink.concat(httpLink)
 
 const wsLink = new WebSocketLink({
   uri: `ws://localhost:4000`,
@@ -36,7 +34,7 @@ const wsLink = new WebSocketLink({
     reconnect: true,
     connectionParams: {
       authToken: localStorage.getItem(AUTH_TOKEN),
-    }
+    },
   }
 })
 
@@ -51,8 +49,8 @@ const link = split(
 
 const client = new ApolloClient({
   link,
-  cache: new InMemoryCache()
-});
+  cache: new InMemoryCache(),
+})
 
 ReactDOM.render(
   <BrowserRouter>
@@ -60,6 +58,6 @@ ReactDOM.render(
       <App />
     </ApolloProvider>
   </BrowserRouter>,
-  document.getElementById("root")
-);
-registerServiceWorker();
+  document.getElementById('root'),
+)
+registerServiceWorker()
